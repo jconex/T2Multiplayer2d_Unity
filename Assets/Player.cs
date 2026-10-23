@@ -1,8 +1,6 @@
-using System;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
+// CODIGO CORREGIDO
 public class Player : MonoBehaviour
 {
     public float speed, jumpForce;
