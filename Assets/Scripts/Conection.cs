@@ -7,6 +7,7 @@ public class Conection : MonoBehaviourPunCallbacks
     private void Start()
     {
         PhotonNetwork.ConnectUsingSettings();
+        PhotonNetwork.AutomaticallySyncScene = true;
         print("Conectado al master");
     }
    override
@@ -30,7 +31,7 @@ public class Conection : MonoBehaviourPunCallbacks
         if(PhotonNetwork.IsMasterClient && PhotonNetwork.CurrentRoom.PlayerCount > 1)
         {
             PhotonNetwork.LoadLevel(1);
-            Debug.Log("Cargando level 1");
+            //Esto se ejecutaría todo el rato así que lo quito, Debug.Log("Cargando level 1");
         }
     }
 }

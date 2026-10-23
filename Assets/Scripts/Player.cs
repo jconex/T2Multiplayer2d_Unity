@@ -17,19 +17,23 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        rig.linearVelocity = (transform.right * speed * Input.GetAxis("Horizontal")) +
+        if (GetComponent<Photon.Pun.PhotonView>().IsMine)
+        {
+            rig.linearVelocity = (transform.right * speed * Input.GetAxis("Horizontal")) +
             (transform.up * rig.linearVelocity.y);
 
-        if (rig.linearVelocity.x < 0.1f)
-            GetComponent<SpriteRenderer>().flipX = false;
-        else if (rig.linearVelocity.x < -0.1f)
-            GetComponent<SpriteRenderer>().flipX = true;
+            if (rig.linearVelocity.x < 0.1f)
+                GetComponent<SpriteRenderer>().flipX = false;
+            else if (rig.linearVelocity.x < -0.1f)
+                GetComponent<SpriteRenderer>().flipX = true;
 
-        if (Input.GetButtonDown("Jump"))
-        {
-            rig.AddForce(transform.up * jumpForce);
+            if (Input.GetButtonDown("Jump"))
+            {
+                rig.AddForce(transform.up * jumpForce);
+            }
+            anim.SetFloat("velocityX", Mathf.Abs(rig.linearVelocity.x));
+            anim.SetFloat("velocityY", rig.linearVelocity.y);
         }
-        anim.SetFloat("velocityX", Mathf.Abs(rig.linearVelocity.x));
-        anim.SetFloat("velocityY", rig.linearVelocity.y);
+        
     }
 }
