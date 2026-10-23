@@ -7,7 +7,7 @@ public class Conection : MonoBehaviourPunCallbacks
     private void Start()
     {
         PhotonNetwork.ConnectUsingSettings();
-        print("Comenzando función Start");
+        print("Conectado al master");
     }
    override
     public void OnConnectedToMaster()
@@ -25,5 +25,12 @@ public class Conection : MonoBehaviourPunCallbacks
         Debug.Log("Te has conectado a la sala" + PhotonNetwork.CurrentRoom.Name);
         Debug.Log("Hay " + PhotonNetwork.CurrentRoom.PlayerCount + " jugadores conectados");
     }
-
+    private void Update()
+    {
+        if(PhotonNetwork.IsMasterClient && PhotonNetwork.CurrentRoom.PlayerCount > 1)
+        {
+            PhotonNetwork.LoadLevel(1);
+            Debug.Log("Cargando level 1");
+        }
+    }
 }
