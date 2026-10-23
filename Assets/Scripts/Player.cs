@@ -1,4 +1,5 @@
 using UnityEngine;
+using Photon.Pun;
 
 // CODIGO CORREGIDO
 public class Player : MonoBehaviour
@@ -17,8 +18,9 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GetComponent<Photon.Pun.PhotonView>().IsMine)
-        {
+        //Esto viene de la librería Photon.Pun
+       if (GetComponent<PhotonView>().IsMine)
+        {   Debug.Log("Este es mi jugador");
             rig.linearVelocity = (transform.right * speed * Input.GetAxis("Horizontal")) +
             (transform.up * rig.linearVelocity.y);
 
@@ -34,6 +36,7 @@ public class Player : MonoBehaviour
             anim.SetFloat("velocityX", Mathf.Abs(rig.linearVelocity.x));
             anim.SetFloat("velocityY", rig.linearVelocity.y);
         }
-        
+       
     }
+    
 }
