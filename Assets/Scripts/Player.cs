@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     {
         rig = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        
     }
 
     // Update is called once per frame
@@ -20,16 +21,26 @@ public class Player : MonoBehaviour
     {
         //Esto viene de la librería Photon.Pun
        if (GetComponent<PhotonView>().IsMine)
-        {   Debug.Log("Este es mi jugador");
+        {
+            Camera.main.transform.SetParent(transform);
+            Camera.main.transform.position = transform.position + (Vector3.up) + transform.forward * -10;
+            //Debug.Log("Este es mi jugador");
             rig.linearVelocity = (transform.right * speed * Input.GetAxis("Horizontal")) +
             (transform.up * rig.linearVelocity.y);
 
-            if (rig.linearVelocity.x < 0.1f)
-                GetComponent<SpriteRenderer>().flipX = false;
+            if (rig.linearVelocity.x > 0.1f)
+                GetComponent<PhotonView>().RPC("RotateSprite", RpcTarget.All, false);
+            // quitado en el video 9 revisar
+            //GetComponent<SpriteRenderer>().flipX = false;
+            //RotateSprite(false);
             else if (rig.linearVelocity.x < -0.1f)
-                GetComponent<SpriteRenderer>().flipX = true;
+                GetComponent<PhotonView>().RPC("RotateSprite", RpcTarget.All, true);
 
-            if (Input.GetButtonDown("Jump"))
+            // quitado en el video 9 revisar
+            //GetComponent<SpriteRenderer>().flipX = true;
+            //RotateSprite(true);
+
+                if (Input.GetButtonDown("Jump"))
             {
                 rig.AddForce(transform.up * jumpForce);
             }
@@ -37,6 +48,11 @@ public class Player : MonoBehaviour
             anim.SetFloat("velocityY", rig.linearVelocity.y);
         }
        
+    }
+    [PunRPC]
+    public void RotateSprite (bool rotate)
+    {
+        GetComponent<SpriteRenderer>().flipX = rotate;
     }
     
 }

@@ -34,7 +34,7 @@ public class Conection : MonoBehaviourPunCallbacks
 
     public override void OnPlayerEnteredRoom(Photon.Realtime.Player newPlayer)
     {
-        //base.OnPlayerEnteredRoom(newPlayer);
+        base.OnPlayerEnteredRoom(newPlayer);
         Debug.Log("Ha entrado otro jugador. Total: " +
                    PhotonNetwork.CurrentRoom.PlayerCount);
 
