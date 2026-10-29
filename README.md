@@ -4,6 +4,8 @@ Creación de tarea basada en esta lista de videos de Youtube https://www.youtube
 Aquí el documento para todos los compañeros del IES EL RINCON
 https://drive.google.com/file/d/1BDz-ek_ucfiEoAevAL8S3fWV5XBfe4g5/view?usp=sharing
 
+## También está el ParrelSync y el Paquete exportado, solo tendrás que activarte el PUN FREE Y PONERLE LA KEY, EN EL DOC ESTÁ EXPLICADO
+
 ![https://jconex.github.io](https://github.com/jconex/T2Multiplayer2d_Unity/blob/main/blob/MainViewStartGame.png)
 ![https://www.sicag.es](https://github.com/jconex/jconex/blob/main/blob/logoazultransparente.png)
 
